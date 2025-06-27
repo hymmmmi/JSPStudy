@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>ACADEMY 회원가입을 환영합니다.</title>
+
+<!-- Custom fonts for this template-->
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
+	type="text/css">
+<link
+	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<!-- Custom styles for this template-->
+<link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+</head>
+
+<body class="bg-gradient-primary">
+
+	<div class="container">
+
+		<div class="card o-hidden border-0 shadow-lg my-5">
+			<div class="card-body p-0">
+				<!-- Nested Row within Card Body -->
+				<div class="row">
+					<div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+					<div class="col-lg-7">
+						<div class="p-5">
+							<div class="text-center">
+								<h1 class="h4 text-gray-900 mb-4">ACADEMY 회원</h1>
+							</div>
+							<form class="user" onsubmit = "saveAccount(event)">
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input type="text" class="form-control form-control-user"
+											id="name" placeholder="이름" required>
+									</div>
+									<div class="col-sm-6">
+										<input type="text" class="form-control form-control-user"
+											id="number" placeholder="전화번호" required>
+									</div>
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input type="text" class="form-control form-control-user"
+											id="nickname" placeholder="닉네임" required>
+									</div>
+								</div>
+								<div class="form-group">
+									<input type="email" class="form-control form-control-user"
+										id="email" placeholder="이메일주소" required>
+								</div>
+								<div class="form-group row">
+									<div class="col-sm-6 mb-3 mb-sm-0">
+										<input type="password" class="form-control form-control-user"
+											id="pw" placeholder="비밀번호" required>
+									</div>
+									<div class="col-sm-6">
+										<input type="password" class="form-control form-control-user"
+											id="Repeatpw" placeholder="비밀번호 확인" required>
+									</div>
+								</div>
+								<button type="submit" class="btn btn-primary btn-user btn-block" href = "login.html" >
+									회원 가입 완료! </button>
+								</from>
+								
+								<script>
+									function saveAccount(event) {
+										event.preventDefault(); 
+										
+										const name = document.getElementById("name").value.trim();
+									    const number = document.getElementById("number").value.trim();
+									    const nickname = document.getElementById("nickname").value.trim();
+									    const email = document.getElementById("email").value.trim();
+									    const pw = document.getElementById("pw").value;
+									    const Repeatpw = document.getElementById("Repeatpw").value;
+										
+									    if (!name || !number || !nickname || !email || !pw || !Repeatpw) {
+									        alert("빈 곳이 없이 모두 입력해주세요.");
+									        return;
+									      }
+
+									      if (pw !== Repeatpw) {
+									        alert("비밀번호가 일치하지 않습니다.");
+									        return;
+									      }
+									      
+									      localStorage.setItem("savedEmail", email);
+									      localStorage.setItem("savedPw", pw);
+									      localStorage.setItem("savedName", name);
+									      localStorage.setItem("savedNumber", number);
+									      localStorage.setItem("savedNickname", nickname);
+
+									      alert("회원가입이 완료되었습니다! 로그인 페이지로 이동합니다.");
+									      window.location.href = "login.html";
+									    }
+									  </script>
+
+								</script>					
+							<hr>
+							<div class="text-center">
+								<a class="small" href="forgot.html"> 비밀번호 찾기</a>
+							</div>
+							<div class="text-center">
+								<a class="small" href="login.html">이미 계정이 있다면 로그인을 해주세요 !</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Bootstrap core JavaScript-->
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+	<!-- Core plugin JavaScript-->
+	<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+	<!-- Custom scripts for all pages-->
+	<script src="js/sb-admin-2.min.js"></script>
+
+</body>
+
+</html>

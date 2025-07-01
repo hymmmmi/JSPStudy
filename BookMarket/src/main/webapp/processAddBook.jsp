@@ -7,16 +7,14 @@
     pageEncoding="UTF-8"%>
 
 <%
-	request.setCharacterEncoding("UTF-8"); // post 메서드 한글 지원 필수코드
 	
-	String filename="";
-	String realFolder = application.getRealPath("/resources/images");
+	String filename = "";
+	String realFolder=application.getRealPath("./resources/images");
 	
 	int maxSize = 5*1024*1024;
 	String encType = "utf-8";
 	
 	MultipartRequest multipartRequest = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
-	
 	
 	String bookId = multipartRequest.getParameter("bookId");
 	String name = multipartRequest.getParameter("name");
@@ -32,7 +30,7 @@
 	Enumeration files = multipartRequest.getFileNames();
 	String fname = (String) files.nextElement();
 	String fileName = multipartRequest.getFilesystemName(fname);
-	
+
 	
 	int price;
 
@@ -65,6 +63,7 @@
 	newBook.setUnitsInStock(stock);
 	newBook.setCondition(condition);
 	newBook.setFilename(fileName);
+
 	
 	System.out.print(newBook.toString());
 	dao.addBook(newBook); // 만들어진 객체를 리스트배열에 꼽는다.

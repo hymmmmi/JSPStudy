@@ -1,4 +1,4 @@
-<%@page import="dao.BookRepository"%>
+<%@ page import="dao.BookRepository"%>
 <%@ page import="dto.Book"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,9 +12,7 @@
 <meta charset="UTF-8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link
-	href="./resources/css/bootstrap.min.css"	rel="stylesheet"/>
-	
+<link href="./resources/css/bootstrap.min.css"	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
@@ -28,8 +26,7 @@
 
 		<%@ include file="menu.jsp" %> 
 		<!-- 메뉴바를 외부파일로 연결 -->
-		
-		
+				
 		
 		<div class="p-5 mb-4 bg-body-tertiary rounded-3">
 			<div class="container-fluid py-1">
@@ -50,7 +47,7 @@
 	     	<%
 	     		for(int i=0 ; i< listOfBooks.size(); i++){
 	     			// 리스트 배열에 0번 부터 끝까지 1씩 증가(인덱스)
-	     			Book book = listOfBooks.get(i); // .add 추가 .get 가져옴
+	     			Book book = listOfBooks.get(i);  // .add 추가 .get 가져옴
 	     		
 	     	%>
 	     		<div class="col-md-4">
@@ -64,7 +61,7 @@
 	     				<p> <%=book.getDescription().substring(0,10) %>...</p>
 	     				<p> <%=book.getUnitPrice() %>원	</p>
 	     				<p> <a href="./book.jsp?id=<%=book.getBookId() %>"
-	     					   class="btn btn-secondary" role="button"> 상세정보 &raquo;</a>
+	     					   class="btn btn-secondary" role="button"> 상세정보 &raquo;</a> </p>
 	     			</div>
 	     		</div>
 	     	<%

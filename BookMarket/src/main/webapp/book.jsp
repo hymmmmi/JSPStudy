@@ -1,8 +1,9 @@
-<%@page import="dto.Book"%>
 <%@page import="dao.BookRepository"%>
+<%@page import="dto.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%-- <jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" /> --%>
+<%@ page errorPage="exceptionNoBookId.jsp" %>
+<jsp:useBean id="bookDAO" class="dao.BookRepository" scope="session" />
 <!-- dao클래스 사용 -->	
 <!DOCTYPE html>
 <html>
@@ -11,11 +12,21 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
-	href="./resources/css/bootstrap.min.css"	rel="stylesheet"/>
+	href="./resources/css/bootstrap.min.css"	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO"
 	crossorigin="anonymous"></script>
+<sript type = "text/javascript">
+	
+	function addToCart(){
+		if(confirm("도서를 장바구니에 추가 하시겠습니까?")) {
+			document.addForm.submit();
+		} else {
+			document.addForm.reset();
+		}
+	}</sript>
+			
 
 <title>교재 상세 페이지 입니다......</title>
 </head>
@@ -40,7 +51,7 @@
 			// url로 넘어온 id 값을 변수에 넣음
 			
 			BookRepository dao = BookRepository.getInstance();
-						
+			
 			Book book = dao.getBookById(id); // dao에 다녀와서 객체를 리턴
 			
 			System.out.println(book);
@@ -49,23 +60,24 @@
 		
 		 <div class="row align-items-md-stretch">
 		 	<div class = "col-md-5">
-		 		<img src = ".resources/images/<%=book.getFilename() %>"
-		 		style = "width : 70%">		 	
+		 		<img src = "./resources/images/<%=book.getFilename() %>" style = "width : 70%">
 		 	</div>
-		 
-		 
 	     	<div class="col-md-6">
 				<h3><b><%=book.getName()%></b></h3>
 				<p><%=book.getDescription()%>
 				<p><b>도서코드 : </b><span class="badge text-bg-danger"> <%=book.getBookId()%></span>							
 				<p><b>저자</b> : <%=book.getAuthor()%>	
 				<p><b>출판사</b> : <%=book.getPublisher()%>	
-				<p><b>출판일</b> : <%=book.getReleaseDate()%>				
+				<p><b>출판일</b> : <%=book.getReleaseDate()%>					
 				<p><b>분류</b> : <%=book.getCategory()%>
 				<p><b>재고수</b> : <%=book.getUnitsInStock()%>
 				<h4><%=book.getUnitPrice()%>원</h4>
-				<p><a href="#" class="btn btn-info"> 도서주문 &raquo;</a> 
+				<p> <form name = "addForm" action = "./addCart.jsp?id=<%=book.getBookId() %>"
+					method = "post">
+					<a href="#" class="btn btn-info"> 도서주문 &raquo;</a> 
+					<a href="./cart.jsp" class="btn btn-warning">장바구니 &raquo;</a>
 					<a href="./books.jsp" class="btn btn-secondary"> 도서목록 &raquo;</a>
+					</form>
 	    	</div>   
 	   	</div> <!-- 본문영역 : 중간 box --> 
 	   	
